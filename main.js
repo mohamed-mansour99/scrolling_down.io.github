@@ -4,6 +4,8 @@ let mountains_back = document.getElementById("mountains_back");
 let mountains_front = document.getElementById("mountains_front");
 let btn = document.getElementById("btn-letsgo");
 let header = document.querySelector("header");
+const boxes = document.querySelectorAll('.box')
+
 
 window.addEventListener("scroll", function () {
   let value = window.scrollY;
@@ -14,3 +16,20 @@ window.addEventListener("scroll", function () {
   btn.style.marginTop = value * 1 + "px";
   header.style.top = value * 0.5 + "px";
 });
+
+window.addEventListener('scroll', checkBoxes)
+checkBoxes()
+
+function checkBoxes() {
+    const triggerBottom = window.innerHeight / 10 * 4
+
+    boxes.forEach(box => {
+        const boxTop = box.getBoundingClientRect().top
+
+        if(boxTop < triggerBottom) {
+            box.classList.add('show')
+        } else {
+            box.classList.remove('show')
+        }
+    })
+}
